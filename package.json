@@ -1,0 +1,19 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "A simple Custom built RestAPI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayyan21d/Rest-API.git"
+  },
+  "author": "rayyan21d",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rayyan21d/Rest-API/issues"
+  },
+  "homepage": "https://github.com/rayyan21d/Rest-API#readme"
+}
