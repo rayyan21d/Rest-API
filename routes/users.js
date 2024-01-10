@@ -16,7 +16,8 @@ router.get('/', async (req, res) => {
 })
 
 // Getting one
-router.get('/:id', (req, res) => {
+router.get('/:id', getUser, (req, res) => {
+    res.send(res.user.name)
 
 })
 
@@ -45,14 +46,52 @@ router.post('/', async (req, res) => {
 })
 
 // Updating one using path not put just one info has 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', getUser, (req, res) => {
+    res.json(res.user)
 
 })
 
 // Deleting one
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getUser, (req, res) => {
+    try {
+        await res.user.remove();
+        res.json({ message: 'Deleted user' })
+
+    } catch (err) {
+        res.status(500).json({ messege:})
+    }
 
 })
+
+
+
+async function getUser(req, res, next) {
+    let user;
+    try {
+
+        user = await User.findById(req.params.id)
+        if (user == null) {
+            return res.status(404).json({ message: "Cannot find user" })
+        }
+
+    } catch (err) {
+        return res.status(500).json({ message: err.message })
+    }
+
+    res.user = user;
+    next()
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 module.exports = router
